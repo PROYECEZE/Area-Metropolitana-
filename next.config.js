@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental: {
-      turbo: false, // 💥 fuerza Webpack en lugar de Turbopack
-    },
-  };
-  
-  module.exports = nextConfig;
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        fs: false,
+      };
+    }
+    return config;
+  },
+};
+
+module.exports = nextConfig;
