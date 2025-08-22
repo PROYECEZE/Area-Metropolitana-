@@ -1,15 +1,7 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { roboto } from "@/fonts/font";
+import "./globals.css"
 
-const geistMono = Geist_Mono({   
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   title: "Area Metropolitana",
@@ -18,7 +10,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <head>
+        <meta charSet="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Metropolitana</title>
+       </head>
+      <body className={`${roboto.className} bg-green-100`}>{children}</body>
     </html>
   );
 }
