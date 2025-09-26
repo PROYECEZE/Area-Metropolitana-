@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Metropolitana</title>
        </head>
-      <body className={`${roboto.className} bg-green-100`}>{children}</body>
+      <body className={`${roboto.className} bg-green-200`}>{children}</body>
     </html>
   );
 }

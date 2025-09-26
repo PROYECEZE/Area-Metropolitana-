@@ -21,10 +21,6 @@ module.exports = {
         strongBlue:'#12263F',
         snowGray:'#6E84A3',
       },
-      container: {
-        center: true,
-        padding: '1rem',
-      },
       maxWidth: {
         'dimensions': '680px',
         'size': '1280px', 

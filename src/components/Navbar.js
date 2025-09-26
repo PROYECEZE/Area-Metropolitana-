@@ -2,9 +2,8 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-
+import Despliege from '@/components/despliege';
 // --- Componentes de Iconos para mayor legibilidad ---
-
 const UserIcon = () => (
     <span className={'icon icon-user'}></span>
   );
@@ -24,8 +23,9 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNewsDropdownOpen, setNewsDropdownOpen] = useState(false);
   const [isToolsDropdownOpen, setToolsDropdownOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   return (
-    <header className="bg-white shadow-md font-sans">
+    <div className="bg-white shadow-md font-sans">
       {/* ======================= NAVEGACIÓN PRINCIPAL ======================= */}
       <nav className="container mx-auto px-4 hidden md:flex items-center justify-between py-4">
         {/* Sección Izquierda: Logo + Links de Navegación */}
@@ -40,44 +40,21 @@ const Navbar = () => {
             />
           </a>
           {/* Menú principal */}
-          <ul className="flex items-center space-x-6 text-sm text-gray-800">
+          <div className="md:flex items-center space-x-6 text-sm text-gray-800">
             {/* Dropdown Noticias */}
-            <li
-              className="relative"
-              onMouseEnter={() => setNewsDropdownOpen(true)}
-              onMouseLeave={() => setNewsDropdownOpen(false)}
-            >
+            <pt className="" >
               <button
-                className="flex items-center hover:text-orange-500 transition-colors"
+                onClick={() => setOpen(!open)}
+                className="relative flex items-center hover:text-orange-500 transition-colors"
                 aria-haspopup="true"
                 aria-expanded={isNewsDropdownOpen}
               >
                 Noticias y Tendencias 
                 <ChevronDownIcon />
               </button>
-              {isNewsDropdownOpen && (
-                <ul className="absolute top-full mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-10">
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      Tendencias del Mercado
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      Guías de Compra
-                    </a>
-                  </li>
-                </ul>
-              )}
-            </li>
+            </pt>
             {/* Dropdown Herramientas */}
-            <li
+            <pt
               className="relative"
               onMouseEnter={() => setToolsDropdownOpen(true)}
               onMouseLeave={() => setToolsDropdownOpen(false)}
@@ -110,8 +87,8 @@ const Navbar = () => {
                   </li>
                 </ul>
               )}
-            </li>
-          </ul>
+            </pt>
+          </div>
         </div>
         {/* Sección Derecha: Autenticación + Publicar */}
         <div className="flex items-center space-x-6">
@@ -130,9 +107,12 @@ const Navbar = () => {
           </a>
         </div>
       </nav>
+      {open && (
+         <Despliege/>
+       )}
       {/* ========================= NAVEGACIÓN MÓVIL ========================= */}
-      <nav className="container mx-auto px-4 md:hidden relative h-20">
-        <div className="flex items-center justify-between h-full">
+      <nav className="container mx-auto px-0 md:hidden h-20 relative">
+        <div className="flex items-center justify-between pt-3 pb-1.5 px-4">
           {/* Botón de Menú Hamburguesa */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -181,8 +161,7 @@ const Navbar = () => {
           </div>
         )}
       </nav>
-    </header>
+    </div>
   );
 };
-
 export default Navbar;
