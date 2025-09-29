@@ -71,3 +71,15 @@ body {
   content: "\e904";
   color:black;
 }
+.icon-plus:before {
+  content: "\ea0a";
+  color:rgb(249, 115, 22);
+}
+.icon-minus:before {
+  content: "\ea0b";
+  color:rgb(249, 115, 22);
+}
+
+
+
+
