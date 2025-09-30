@@ -27,7 +27,7 @@ export default function despliege() {
   ];
   return (
     <>
-    <div className="bg-gray-300 absolute w-full">
+    <div className="bg-gray-300 absolute w-full hidden md:block">
        <div className="flex container mx-auto gap-8">
           {/* Columna de la barra lateral */}
               <Sidebar />

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Despliege from '@/components/despliege';
 import Sidebar from './Sidebar';
+import ToolsPage from './toolcard';
 
 // --- Componentes de Iconos para mayor legibilidad ---
 const UserIcon = () => (
@@ -36,7 +37,7 @@ const MenosIcon = () => (
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNewsDropdownOpen] = useState(false);
-  const [isToolsDropdownOpen, setToolsDropdownOpen] = useState(false);
+  const [onpe, NewDropdownOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [opn, closeOpen] = useState(false);
 
@@ -70,39 +71,16 @@ const Navbar = () => {
               </button>
             </pt>
             {/* Dropdown Herramientas */}
-            <pt
-              className="relative"
-              onMouseEnter={() => setToolsDropdownOpen(true)}
-              onMouseLeave={() => setToolsDropdownOpen(false)}
-            >
+            <pt>
               <button
-                className="flex items-center hover:text-orange-500 transition-colors"
+                 onClick={() => NewDropdownOpen(!onpe)}
+                className="relative flex items-center hover:text-orange-500 transition-colors"
                 aria-haspopup="true"
-                aria-expanded={isToolsDropdownOpen}
+                aria-expanded={NewDropdownOpen}
               >
-                Herramientas
-               <BelowDownIcon />
+                Noticias y Tendencias 
+                 {onpe ? <AboveDownIcon aria-hidden="true" /> : <BelowDownIcon aria-hidden="true" />}
               </button>
-              {isToolsDropdownOpen && (
-                <ul className="absolute top-full mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-10">
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      Calculadora de Crédito
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      Avalúo en Línea
-                    </a>
-                  </li>
-                </ul>
-              )}
             </pt>
           </div>
         </div>
@@ -123,6 +101,9 @@ const Navbar = () => {
           </a>
         </div>
       </nav>
+      {onpe && (
+        <ToolsPage />
+      )}
       {/* ========================= NAVEGACIÓN MÓVIL ========================= */}
       <nav className="container mx-auto px-0 md:hidden h-20 relative">
         <div className="flex items-center justify-between pt-3 pb-1.5 px-4">
@@ -157,7 +138,7 @@ const Navbar = () => {
             id="mobile-menu"
             className="md:hidden bg-white border-t border-gray-200"
           >
-            <div className="flex flex-col px-4 py-4 space-y-2 cursor-pointer">
+            <div className="flex flex-col px-4 py-4 space-y-2 gap-4 cursor-pointer">
               <div onClick={() => closeOpen(!opn)} 
                 className="flex items-center justify-between text-gray-700 hover:text-orange-500">Noticias y tendencias
                 <pt-icon 
@@ -168,7 +149,7 @@ const Navbar = () => {
                 </pt-icon>
               </div>
               {opn && (
-                <Sidebar />
+                <Sidebar showHeader={false} showButton={false}/>
               )}
               <li className="flex items-center justify-between">
                 <a href="#" className="block py-2 text-gray-700 hover:text-orange-500">Herramientas</a>
