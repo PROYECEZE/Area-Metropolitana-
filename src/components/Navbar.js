@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Despliege from '@/components/despliege';
 import Sidebar from './Sidebar';
 import ToolsPage from './toolcard';
+import ToolGi from './Toolgi';
 
 // --- Componentes de Iconos para mayor legibilidad ---
 const UserIcon = () => (
@@ -37,6 +38,7 @@ const MenosIcon = () => (
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNewsDropdownOpen] = useState(false);
+  const [newOpen, cloOpen]= useState(false);
   const [onpe, NewDropdownOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [opn, closeOpen] = useState(false);
@@ -138,9 +140,9 @@ const Navbar = () => {
             id="mobile-menu"
             className="md:hidden bg-white border-t border-gray-200"
           >
-            <div className="flex flex-col px-4 py-4 space-y-2 gap-4 cursor-pointer">
+            <div className="flex flex-col md:px-4 px-0 py-4 space-y-2 gap-4 cursor-pointer">
               <div onClick={() => closeOpen(!opn)} 
-                className="flex items-center justify-between text-gray-700 hover:text-orange-500">Noticias y tendencias
+                className="flex items-center justify-between text-gray-700 hover:text-orange-500 md:px-0 px-5">Noticias y tendencias
                 <pt-icon 
                    className="py-2"
                    aria-label={opn ? "Cerrar menú" : "Abrir menú"}
@@ -151,19 +153,28 @@ const Navbar = () => {
               {opn && (
                 <Sidebar showHeader={false} showButton={false}/>
               )}
-              <li className="flex items-center justify-between">
-                <a href="#" className="block py-2 text-gray-700 hover:text-orange-500">Herramientas</a>
-                <span className={'icon icon-plus'}/></li>
+              <div onClick={() => cloOpen(!newOpen)} 
+                className="flex items-center justify-between py-2 text-gray-700 hover:text-orange-500 md:px-0 px-5"> Herramientas
+                   <pt-icon 
+                   className="py-2"
+                   aria-label={newOpen ? "Cerrar menú" : "Abrir menú"}
+                   aria-expanded={newOpen}>
+                   {newOpen ? <MenosIcon aria-hidden="true" /> : <MasIcon aria-hidden="true" />}
+                </pt-icon>
+              </div>
+              {newOpen && (
+                <ToolGi />
+              )}
               <li>
-                <a href="#" className="block py-2 text-gray-700 hover:text-orange-500">Ingresar</a>
+                <a href="#" className="block py-2 text-gray-700 hover:text-orange-500 md:px-0 px-5">Ingresar</a>
               </li>
               <li>
-                <a href="#" className="block py-2 text-gray-700 hover:text-orange-500">Contáctenos</a>
+                <a href="#" className="block py-2 text-gray-700 hover:text-orange-500 md:px-0 px-5">Contáctenos</a>
               </li>
-              <li>
+              <li className= "md:px-0 px-5">
                 <a
                   href="#"
-                  className="block w-full text-center bg-orange-500 text-white px-4 py-3 rounded-md hover:bg-orange-600 mt-4 font-semibold"
+                  className="block w-full text-center bg-orange-500 text-white px-4 py-3 rounded-md hover:bg-orange-600 mt-4 font-semibold md:px-0 px-5"
                 >
                   Publica tu inmueble
                 </a>
@@ -179,3 +190,4 @@ const Navbar = () => {
   );
 };
 export default Navbar;
+

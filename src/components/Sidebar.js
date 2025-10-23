@@ -12,16 +12,16 @@ export default function Sidebar({showHeader = true, showButton = true }) {
   ];
 
   return (
-    <div className="bg-gray-100 p-6 rounded-lg shadow-sm mt-6 mb-6">
+    <div className="group bg-gray-100 p-6 rounded-lg shadow-sm mt-6 mb-6 hover:bg-orange-500 hover:text-white transition duration-300">
       {showHeader && (
        <h2 className="text-xl font-bold mb-6 text-gray-800">Noticias y tendencias</h2>
       )}
-      <ul className="space-y-4">
+      <ul className="space-y-4 group-hover:text-white text-gray-700 text-lg ">
         {categories.map((category) => (
           <li key={category.name}>
             <Link 
               href={category.href} 
-              className="text-gray-700 hover:text-orange-500 text-lg block"
+              className="hover:underline underline-offset-4 decoration-2 decoration-white block"
             >
               {category.name}
             </Link>
